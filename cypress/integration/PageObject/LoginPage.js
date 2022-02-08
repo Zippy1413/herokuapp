@@ -15,5 +15,8 @@ class LoginPage {
     submit() {
         return cy.get('button[type="submit"]')
     }
+    Logout(){
+        return cy.get('.button')
+    }
 }
 export default LoginPage
