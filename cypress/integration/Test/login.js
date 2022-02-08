@@ -21,7 +21,7 @@ describe("internet herokuapp", function () {
    login.submit().click();
 
    cy.url().should('be.equal', this.testdata.adminUrl)
-   // call submit() function 
+   // call logout() function 
    login.Logout().click();
    cy.wait(500)
 })
@@ -34,6 +34,8 @@ describe("internet herokuapp", function () {
    login.enterPassword().type('SuperSecret');
    // call submit() function 
    login.submit().click();
+   cy.get('.flash').should('contain', 'Your username is invalid!')
+
 })
 it("Login with invalid Username", function () {
    // call navigate() function 
@@ -44,6 +46,7 @@ it("Login with invalid Username", function () {
    login.enterPassword().type('SuperSecretPassword!');
    // call submit() function 
    login.submit().click();
+   cy.get('.flash').should('contain', 'Your username is invalid!')
 })
 it("Login with invalid Password", function () {
    // call navigate() function 
@@ -54,5 +57,6 @@ it("Login with invalid Password", function () {
    login.enterPassword().type('SuperSecret');
    // call submit() function 
    login.submit().click();
+   cy.get('.flash').should('contain', 'Your password is invalid!')
 })
 })
